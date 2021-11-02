@@ -3,7 +3,15 @@
     <div id="nav">
       <router-link to="/">Home</router-link>
       |
-      <router-link to="/about">About</router-link>
+      <router-link to="/signup">User Signup</router-link>
+      |
+      <router-link to="/signup">Rater Signup</router-link>
+      |
+      <router-link to="/login">User Login</router-link>
+      |
+      <router-link to="/rater">Rater Login</router-link>
+      |
+      <router-link to="/photos">Photos</router-link>
     </div>
     <router-view />
   </div>
