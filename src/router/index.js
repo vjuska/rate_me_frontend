@@ -4,6 +4,9 @@ import Home from "../views/Home.vue";
 import PhotosIndex from "../views/PhotosIndex.vue";
 import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
+import RaterSignup from "../views/RaterSignup.vue";
+import RaterLogin from "../views/RaterLogin.vue";
+import PhotosNew from "../views/PhotosNew.vue";
 
 Vue.use(VueRouter);
 
@@ -35,6 +38,21 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
+  },
+  {
+    path: "/ratersignup",
+    name: "ratersignup",
+    component: RaterSignup,
+  },
+  {
+    path: "/raterlogin",
+    name: "raterlogin",
+    component: RaterLogin,
+  },
+  {
+    path: "/photos/new",
+    name: "photos-new",
+    component: PhotosNew,
   },
 ];
 

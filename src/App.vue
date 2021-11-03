@@ -5,13 +5,15 @@
       |
       <router-link to="/signup">User Signup</router-link>
       |
-      <router-link to="/signup">Rater Signup</router-link>
+      <router-link to="/ratersignup">Rater Signup</router-link>
       |
       <router-link to="/login">User Login</router-link>
       |
-      <router-link to="/rater">Rater Login</router-link>
+      <router-link to="/raterlogin">Rater Login</router-link>
       |
       <router-link to="/photos">Photos</router-link>
+      |
+      <router-link to="/photos/new">Upload Photos</router-link>
     </div>
     <router-view />
   </div>
