@@ -1,15 +1,19 @@
 <template>
-  <div class="photos-index">
-    <h1>All Photos</h1>
-    <div v-for="photo in photos" v-bind:key="photo.id">
-      <img v-bind:src="photo.img_url" width="200px" alt="" />
-      <div v-for="rating in photo.ratings" v-bind:key="rating.id">
-        <p>Feedback: {{ rating.description }}</p>
-        <p>Score for photo: {{ rating.score_for_photo }}</p>
-        <p>Rater feed back: {{ rating.rater_feed_back }}</p>
+  <section id="portfolio" class="portfolio">
+    <div class="photos-index">
+      <h1>All Photos</h1>
+      <div class="row">
+        <div class="col-4" v-for="photo in photos" v-bind:key="photo.id">
+          <img v-bind:src="photo.img_url" width="200px" alt="" />
+          <div v-for="rating in photo.ratings" v-bind:key="rating.id">
+            <p>Feedback: {{ rating.description }}</p>
+            <p>Score for photo: {{ rating.score_for_photo }}</p>
+            <p>Rater feed back: {{ rating.rater_feed_back }}</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
