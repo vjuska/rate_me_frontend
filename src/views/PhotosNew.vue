@@ -1,14 +1,29 @@
 <template>
-  <div>
-    <form v-on:submit.prevent="submit()">
-      <h2>Upload new photo:</h2>
-      <div>
-        Image:
-        <input type="file" v-on:change="setFile($event)" ref="fileInput" />
+  <main id="main">
+    <section id="breadcrumbs" class="breadcrumbs"></section>
+    <section id="team" class="team">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 mx-auto">
+            <v-row align="center">
+              <v-row justify="center">
+                <div class="member d-flex align-items-center">
+                  <form v-on:submit.prevent="submit()">
+                    <h2>Upload a new photo:</h2>
+                    <div>
+                      Image:
+                      <input type="file" v-on:change="setFile($event)" ref="fileInput" />
+                    </div>
+                    <p><input type="submit" value="Submit" /></p>
+                  </form>
+                </div>
+              </v-row>
+            </v-row>
+          </div>
+        </div>
       </div>
-      <input type="submit" value="Submit" />
-    </form>
-  </div>
+    </section>
+  </main>
 </template>
 
 <script>

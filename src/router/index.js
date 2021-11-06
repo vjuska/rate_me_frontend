@@ -7,6 +7,8 @@ import Login from "../views/Login.vue";
 import RaterSignup from "../views/RaterSignup.vue";
 import RaterLogin from "../views/RaterLogin.vue";
 import PhotosNew from "../views/PhotosNew.vue";
+import Logout from "../views/Logout.vue";
+import User from "../views/User.vue";
 
 Vue.use(VueRouter);
 
@@ -38,6 +40,16 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
+  },
+  {
+    path: "/user",
+    name: "user",
+    component: User,
+  },
+  {
+    path: "/logout",
+    name: "logout",
+    component: Logout,
   },
   {
     path: "/ratersignup",

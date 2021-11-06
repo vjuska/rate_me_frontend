@@ -13,7 +13,7 @@
 
             <li class="dropdown">
               <a href="#">
-                <span class="getstarted">User</span>
+                <span class="getstarted">User Login/Signup</span>
                 <i class="bi bi-chevron-down"></i>
               </a>
               <ul>
@@ -21,6 +21,9 @@
                 <li><a href="/login">Login</a></li>
               </ul>
             </li>
+            <li><a href="/logout">User Logout</a></li>
+            <li><a href="/photos">User Photos</a></li>
+            <li><a href="/photos/new">Upload Photos</a></li>
             <li class="dropdown">
               <a href="#">
                 <span>Rater</span>
@@ -31,8 +34,6 @@
                 <li><a href="/raterlogin">Login</a></li>
               </ul>
             </li>
-            <li><a href="/photos">User Photos</a></li>
-            <li><a href="/photos/new">Upload Photos</a></li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
@@ -40,7 +41,7 @@
       </div>
     </header>
     <!-- End Header -->
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link>
       |
       <router-link to="/signup">User Signup</router-link>
@@ -54,30 +55,14 @@
       <router-link to="/photos">Photos</router-link>
       |
       <router-link to="/photos/new">Upload Photos</router-link>
-    </div>
+    </div> -->
     <router-view />
   </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/assets/img/slide/2013056.jpg) no-repeat center center fixed;
 }
 </style>
