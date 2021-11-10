@@ -1,35 +1,53 @@
 <template>
-  <section id="portfolio" class="portfolio">
-    <div class="signup">
-      <form v-on:submit.prevent="submit()">
-        <h1>Signup</h1>
-        <ul>
-          <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
-        </ul>
-        <div>
-          <label>First Name:</label>
-          <input type="text" v-model="newUserParams.first_name" />
+  <main id="main">
+    <section id="breadcrumbs" class="breadcrumbs"></section>
+    <section id="hero">
+      <div class="carousel-item active" style="background-image: url(assets/img/slide/2013056.jpg)">
+        <div class="carousel-item active" style="background-image: url(assets/img/slide/2013056.jpg)">
+          <div class="carousel-container">
+            <div class="container">
+              <section id="portfolio" class="portfolio">
+                <div class="signup">
+                  <form v-on:submit.prevent="submit()">
+                    <h1 class="text-light">Signup</h1>
+                    <ul>
+                      <li class="text-light" v-for="error in errors" v-bind:key="error">{{ error }}!</li>
+                    </ul>
+                    <div>
+                      <h5><label class="text-light">First Name:</label></h5>
+                      <input type="text" v-model="newUserParams.first_name" />
+                    </div>
+                    <br />
+                    <div>
+                      <h5><label class="text-light">Last Name:</label></h5>
+                      <input type="text" v-model="newUserParams.last_name" />
+                    </div>
+                    <br />
+                    <div>
+                      <h5><label class="text-light">Email:</label></h5>
+                      <input type="email" v-model="newUserParams.email" />
+                    </div>
+                    <br />
+                    <div>
+                      <h5><label class="text-light">Password:</label></h5>
+                      <input type="password" v-model="newUserParams.password" />
+                    </div>
+                    <br />
+                    <div>
+                      <h5><label class="text-light">Password confirmation:</label></h5>
+                      <input type="password" v-model="newUserParams.password_confirmation" />
+                    </div>
+                    <br />
+                    <input type="submit" value="Submit" class="btn btn-danger" />
+                  </form>
+                </div>
+              </section>
+            </div>
+          </div>
         </div>
-        <div>
-          <label>Last Name:</label>
-          <input type="text" v-model="newUserParams.last_name" />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input type="email" v-model="newUserParams.email" />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" v-model="newUserParams.password" />
-        </div>
-        <div>
-          <label>Password confirmation:</label>
-          <input type="password" v-model="newUserParams.password_confirmation" />
-        </div>
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
-  </section>
+      </div>
+    </section>
+  </main>
 </template>
 
 <script>

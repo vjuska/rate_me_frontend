@@ -1,54 +1,137 @@
 <template>
   <main id="main">
     <section id="breadcrumbs" class="breadcrumbs"></section>
+
     <section id="team" class="team">
       <div class="container">
-        <h2>All Photos</h2>
+        <h2 class="text-light">All Photos</h2>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#bestphoto">
+          What's my best photo?
+        </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#bestphoto">
+          Which photo(s) should I replace?
+        </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <div class="modal fade" id="bestphoto" tabindex="-1" aria-labelledby="bestphotoLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="bestphotoLabel">Your #1 highest rated photo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <center>
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/1/14/Deadpool_2_Japan_Premiere_Red_Carpet_Ryan_Reynolds_%28cropped%29.jpg"
+                    style="height: 200px"
+                  />
+                  <p>
+                    According to the feedback received by the raters and the AI score. this should be the primary photo,
+                    used on your dating profile.
+                  </p>
+                </center>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="row">
-          <div class="col-lg-6 mt-4" v-for="photo in photos" v-bind:key="photo.id">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img v-bind:src="photo.img_url" class="img-fluid" alt="" /></div>
-              <div class="member-info">
-                <h4
-                  v-bind:class="{
-                    'text-danger': photo.average_rating < 80,
-                    'text-success': photo.average_rating >= 80,
-                  }"
-                >
-                  Average Rater Photo Score {{ photo.average_rating }}%
-                </h4>
-                <h4 class="text-success" v-if="photo.goodScore">Average AI Photo Score: {{ photo.goodScore }}%</h4>
-                <h4 class="text-danger" v-if="photo.badScore">Average AI Photo Score: {{ photo.badScore }}%</h4>
-                <h4 v-if="!photo.analysis">Average AI Photo Score:</h4>
-                <div v-for="rating in photo.ratings" v-bind:key="rating.id">
-                  <p>Rater's Feedback: {{ rating.description }}</p>
-                  <p>Feed back for rater: {{ rating.rater_feed_back }}</p>
-                  <!-- <button class="btn btn-danger btn-sm" v-on:click="updateRating(rating)">Update</button> -->
-                  <!-- <button type="button" class="btn btn-danger btn-sm" v-on:click="updateRatingGood(rating)">
+          <div class="photo-card col-lg-6 mt-4" v-for="photo in photos" v-bind:key="photo.id">
+            <div class="member d-flex align-items-start" style="height: 100%">
+              <div class="row">
+                <div class="col-4">
+                  <div class="pic">
+                    <button type="button" data-bs-toggle="modal" :data-bs-target="`#enlargephoto${photo.id}`">
+                      <img v-bind:src="photo.img_url" class="img-fluid" alt="" />
+                      <div
+                        class="modal fade"
+                        :id="`enlargephoto${photo.id}`"
+                        tabindex="-1"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div class="modal-body">
+                              <img style="max-height: 300px" v-bind:src="photo.img_url" class="img-fluid" alt="" />
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="member-info">
+                    <h4
+                      v-bind:class="{
+                        'text-danger': photo.average_rating < 80,
+                        'text-success': photo.average_rating >= 80,
+                      }"
+                    >
+                      Average Rater Photo Score {{ photo.average_rating }}%
+                    </h4>
+                    <h4 class="text-success" v-if="photo.goodScore">Average AI Photo Score: {{ photo.goodScore }}%</h4>
+                    <h4 class="text-danger" v-if="photo.badScore">Average AI Photo Score: {{ photo.badScore }}%</h4>
+                    <h4 v-if="!photo.analysis">Average AI Photo Score:</h4>
+                    <div v-for="rating in photo.ratings" v-bind:key="rating.id">
+                      <p>Rater's Feedback: {{ rating.description }}</p>
+                      <div v-if="rating.rater_feed_back && rating.rater_feed_back === -1">
+                        <p>
+                          Feed back for rater:
+                          <i class="bi bi-hand-thumbs-down fa-10x"></i>
+                        </p>
+                      </div>
+                      <div v-if="rating.rater_feed_back && rating.rater_feed_back === 1">
+                        <p>
+                          Feed back for rater:
+                          <i class="bi bi-hand-thumbs-up fa-10x"></i>
+                        </p>
+                      </div>
+                      <!-- <p>Feed back for rater: {{ rating.rater_feed_back }}</p> -->
+                      <!-- <button class="btn btn-danger btn-sm" v-on:click="updateRating(rating)">Update</button> -->
+                      <!-- <button type="button" class="btn btn-danger btn-sm" v-on:click="updateRatingGood(rating)">
                     Thumbs Up
                   </button> -->
-                  <!-- <button type="button" class="btn btn-danger btn-sm" v-on:click="updateRatingBad(rating)">
+                      <!-- <button type="button" class="btn btn-danger btn-sm" v-on:click="updateRatingBad(rating)">
                     Thumbs Down
                   </button> -->
-                  <button class="btn btn-success btn-sm" v-on:click="updateRatingGood(rating)">
-                    <i class="bi bi-hand-thumbs-up fa-10x"></i>
-                  </button>
-                  <button class="btn btn-warning btn-sm" v-on:click="updateRatingBad(rating)">
-                    <i class="bi bi-hand-thumbs-down fa-10x"></i>
-                  </button>
-                </div>
+                      <button class="btn btn-success btn-sm" v-on:click="updateRatingGood(rating)">
+                        <i class="bi bi-hand-thumbs-up fa-10x"></i>
+                      </button>
+                      <button class="btn btn-warning btn-sm" v-on:click="updateRatingBad(rating)">
+                        <i class="bi bi-hand-thumbs-down fa-10x"></i>
+                      </button>
+                    </div>
 
-                <p>
-                  <button
-                    type="button"
-                    class="btn btn-danger"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    v-on:click="analyze(photo)"
-                  >
-                    Click me for Quick Analysis
-                  </button>
-                </p>
+                    <p>
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                        v-on:click="analyze(photo)"
+                      >
+                        Click me for Quick Analysis
+                      </button>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -87,7 +170,7 @@
                     v-if="currentPhoto.attributes.dark_glasses && currentPhoto.attributes.dark_glasses.value === 'true'"
                   >
                     <h2 class="text-danger">Dark glasses: true</h2>
-                    <p>Wearing sunglasses makes you look like a creep</p>
+                    <p>Wearing sunglasses makes you look dishonest and that you are hiding something</p>
                   </div>
                   <div v-else>
                     <h2 class="text-success">Dark glasses: false</h2>
@@ -99,7 +182,7 @@
                     <p>Good job! Smiling in your photos makes you appear more approachable and laidback</p>
                   </div>
                   <div v-else>
-                    <h2 class="text-success">Smiling: false</h2>
+                    <h2 class="text-danger">Smiling: false</h2>
                     <p>Not smiling in your photos makes you look less approachable</p>
                   </div>
 

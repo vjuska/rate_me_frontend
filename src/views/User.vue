@@ -19,10 +19,8 @@
                 <span></span>
                 <p>Bio: {{ currentUserBio }}</p>
                 <div class="social">
-                  <a href=""><i class="ri-twitter-fill"></i></a>
                   <a href=""><i class="ri-facebook-fill"></i></a>
                   <a href=""><i class="ri-instagram-fill"></i></a>
-                  <a href=""><i class="ri-linkedin-box-fill"></i></a>
                 </div>
                 <p>
                   <button
@@ -115,7 +113,7 @@
                                   </p>
                                 </div>
                                 <div v-else>
-                                  <h2 class="text-success">Smiling: false</h2>
+                                  <h2 class="text-danger">Smiling: false</h2>
                                   <p>Not smiling in your photos makes you look less approachable</p>
                                 </div>
 
