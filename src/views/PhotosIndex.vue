@@ -9,11 +9,47 @@
           What's my best photo?
         </button>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#bestphoto">
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#changephotos">
           Which photo(s) should I replace?
         </button>
         &nbsp;&nbsp;&nbsp;&nbsp;
-
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#otherareas">
+          What raters think of your overall dating profile
+        </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="modal fade" id="otherareas" tabindex="-1" aria-labelledby="otherareasLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="otherareasLabel">General profile feedback</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <center>
+                  <p>
+                    Authentic:
+                    <span class="text-danger">0%</span>
+                  </p>
+                  <p>
+                    Trustworthy:
+                    <span class="text-danger">20%</span>
+                  </p>
+                  <p>
+                    Attractive
+                    <span class="text-success">80%</span>
+                  </p>
+                  <p>
+                    Confident:
+                    <span class="text-danger">30%</span>
+                  </p>
+                </center>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="modal fade" id="bestphoto" tabindex="-1" aria-labelledby="bestphotoLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -28,9 +64,34 @@
                     style="height: 200px"
                   />
                   <p>
-                    According to the feedback received by the raters and the AI score. this should be the primary photo,
-                    used on your dating profile.
+                    According to the feedback received by the raters and the AI this should be used as the primary photo
+                    on your dating profile.
                   </p>
+                </center>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="changephotos" tabindex="-1" aria-labelledby="changephotosLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="changephotosLabel">
+                  These are the photos that have a combined average score below 80%
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <center>
+                  <img
+                    src="https://i.pinimg.com/originals/25/04/53/2504531d1ce42f9e26435e031ea58f25.jpg"
+                    style="height: 100x"
+                  />
+                  <img src="https://i.redd.it/wek3uj964r721.jpg" style="height: 200px" />
+                  <img src="https://medias.spotern.com/spots/w640/275/275974-1580812533.jpg" style="height: 200px" />
                 </center>
               </div>
               <div class="modal-footer">
