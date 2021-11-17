@@ -27,20 +27,24 @@
               <div class="modal-body">
                 <center>
                   <p>
-                    Authentic:
-                    <span class="text-danger">0%</span>
-                  </p>
-                  <p>
-                    Trustworthy:
+                    Fun:
                     <span class="text-danger">20%</span>
                   </p>
                   <p>
-                    Attractive
+                    Authentic:
+                    <span class="text-danger">50%</span>
+                  </p>
+                  <p>
+                    Trustworthy:
                     <span class="text-success">80%</span>
                   </p>
                   <p>
+                    Attractive
+                    <span class="text-success">85%</span>
+                  </p>
+                  <p>
                     Confident:
-                    <span class="text-danger">30%</span>
+                    <span class="text-danger">60%</span>
                   </p>
                 </center>
               </div>
@@ -207,10 +211,6 @@
             </div>
             <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
             <div class="modal-body" v-if="currentPhoto.attributes">
-              <div v-if="currentPhoto.attributes.gender">
-                <p>Gender: {{ currentPhoto.attributes.gender.value }}</p>
-              </div>
-
               <div v-if="currentPhoto.attributes.age_est">
                 <p>Age based on the photo: {{ currentPhoto.attributes.age_est.value }}</p>
               </div>
