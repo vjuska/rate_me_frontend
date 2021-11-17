@@ -4,7 +4,9 @@ import router from "./router";
 import axios from "axios";
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://thirsty-lovelace-8ac83f.netlify.app/";
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://thirsty-lovelace-8ac83f.netlify.app/" & "/";
 
 var jwt = localStorage.getItem("jwt");
 if (jwt) {
