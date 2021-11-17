@@ -63,7 +63,7 @@ export default {
           localStorage.setItem("currentUserJob", response.data.job);
           localStorage.setItem("currentUserPhoto", response.data.photo);
           localStorage.setItem("currentUserBio", response.data.bio);
-          this.$router.push("/user");
+          this.$router.push("https://hidden-thicket-65529.herokuapp.com//user");
         })
         .catch((error) => {
           console.log(error.response);
