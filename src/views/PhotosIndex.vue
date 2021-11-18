@@ -344,7 +344,7 @@ export default {
   },
   methods: {
     indexPhotos: function () {
-      axios.get("https://hidden-thicket-65529.herokuapp.com/photos").then((response) => {
+      axios.get("/photos").then((response) => {
         console.log("photos index", response);
         this.photos = response.data;
       });
