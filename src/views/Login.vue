@@ -4,17 +4,26 @@
     <section id="hero">
       <div class="carousel-item active" style="background-image: url(assets/img/slide/2013056.jpg)">
         <div class="carousel-item active" style="background-image: url(assets/img/slide/2013056.jpg)">
+      <!-- Looks like you mostly relied on a vendor/3rd party stylesheet, but typically better practice is css stylesheets 
+      rather than inline styles whenever possible, inline styling will override all other styles and can make things confusing 
+      the larger the project gets -->
           <div class="carousel-container">
             <div class="container">
+      <!-- You've got a lot of nested container-related divs above, it doesn't seem like they should all be necessary? 
+      this would be the kind of area I would call out to look at for possible refactoring, the less nesting, the better -->
               <div class="login">
                 <form v-on:submit.prevent="submit()">
                   <p></p>
                   <p></p>
+          <!-- Why the empty <p> tags? I see people do this sometimes when they want to basically create new lines on the 
+            page to push something else down, if that's what's happening here, then this would be a code smell—should be done via CSS,
+            not empty block level elements -->
                   <h2 class="animate__animated animate__fadeInDown">User Login</h2>
                   <ul>
                     <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
                   </ul>
                   <div>
+                    <!-- Small thing — IMO it's more HTML semantically descriptive to use <p> rather than <span> to wrap text -->
                     <span class="animate__animated animate__fadeInUp text-light">User's Email:&nbsp;&nbsp;&nbsp;</span>
                     <input class="animate__animated animate__fadeInUp" type="email" v-model="newSessionParams.email" />
                     <label class="text-light">&nbsp;&nbsp;Password:&nbsp;</label>
@@ -55,6 +64,20 @@ export default {
       axios
         .post("/sessions", this.newSessionParams)
         .then((response) => {
+          // Are you familiar with this syntax?
+          /*
+          let {
+              data: {
+                first_name: firstName, // Optional, but the colon here allows you to rename the variable if you wanted to change it something different from the object property name
+                last_name: lastName,
+                location,
+                job,
+                photo,
+                bio
+              }
+          } = response;
+          It lets you extract all those nested values once rather than having to retype response.data.etc every time
+          */
           axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
           localStorage.setItem("currentUserFirstName", response.data.first_name);
