@@ -237,6 +237,8 @@ export default {
       });
     },
     analyze: function () {
+ /* It seems like there's a lot of duplication here with code in PhotosIndex.vue, definitely an area to look at to DRY your code
+ and share common JS functions across multiple Vue templates */     
       this.loading = true;
       axios.get("/photos/analyze/1").then((response) => {
         this.loading = false;
