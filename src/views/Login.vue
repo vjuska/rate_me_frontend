@@ -64,11 +64,12 @@ export default {
       axios
         .post("/sessions", this.newSessionParams)
         .then((response) => {
-          // Are you familiar with this syntax?
+          // Are you familiar with JS destructuring?
           /*
           let {
               data: {
-                first_name: firstName, // Optional, but the colon here allows you to rename the variable if you wanted to change it something different from the object property name
+                jwt,
+                first_name: firstName, // Optional, but the colon syntax allows you to rename the variable if you wanted to change it something different from the object property name
                 last_name: lastName,
                 location,
                 job,
@@ -76,7 +77,17 @@ export default {
                 bio
               }
           } = response;
-          It lets you extract all those nested values once rather than having to retype response.data.etc every time
+          It lets you extract all those nested values as vars once rather than having to retype response.data.etc every time, so the below code
+          would instead look like this:
+
+          axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
+          localStorage.setItem("jwt", jwt);
+          localStorage.setItem("currentUserFirstName", firstName);
+          localStorage.setItem("currentUserLastName", lastName);
+          localStorage.setItem("currentUserLocation", location);
+          localStorage.setItem("currentUserJob", job);
+          localStorage.setItem("currentUserPhoto", photo);
+          localStorage.setItem("currentUserBio", bio);
           */
           axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
