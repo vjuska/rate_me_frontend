@@ -419,7 +419,7 @@ export default {
           }
           if (attributes.sadness.value === "true") {
             analysis.score -= 10;
-        // LOL I love that it's trying to detect sadness and fear in the photo
+      // LOL I love that it's trying to detect sadness and fear in the photo
           }
           if (attributes.beard.value === "false") {
             analysis.score -= 10;
@@ -430,13 +430,11 @@ export default {
           if (analysis.score < 80) {
             badScore = analysis.score;
           }
-  /* This is a classic example of having multiple sources of truth. With this set up, in the html code you're having to check 
-  if (goodScore) and if (badScore), and whichever gets set is just a copy of the same value in analysis.score. It's two separate vars defining 
-  the same thing. It's a good rule of thumb to avoid duplicating data in your contract like this since as soon as you do, you run the risk of 
-  values getting out of sync and in some future update no longer knowing if analysis.score or goodScore is the correct score to use. You've already 
-  got the score in analysis.score, let that be your source of truth for the score value. Meanwhile, for the good vs bad score determination, set one 
-  isGoodScore boolean and do a !isGoodScore check when you need to know if it's a bad score
-
+  /* This is a classic example of having multiple sources of truth. With this set up, in the html code you're having to check if (goodScore) and if (badScore), 
+  and whichever gets set is just a copy of the same value in analysis.score. It's two separate vars defining the same thing. It's a good rule of thumb to avoid
+ duplicating data in your contract like this since as soon as you do, you run the risk of values getting out of sync and in some future update no longer knowing
+  if analysis.score or goodScore is the correct score to use. You've already got the score in analysis.score, let that be your source of truth for the score value. 
+  Meanwhile, for the good vs bad score determination, set one isGoodScore boolean and do a !isGoodScore check when you need to know if it's a bad score
   let isGoodScore = analysis.score >= 80;
 
   */
