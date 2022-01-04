@@ -109,6 +109,8 @@
             <div class="member d-flex align-items-start" style="height: 100%">
               <div class="row">
                 <div class="col-4">
+<!--  Be careful of relying too heavily on bootstrap row/col grid set ups for all your positioning needs, it can be super handy but 
+sometimes it's a code smell for not using CSS -->
                   <div class="pic">
                     <button type="button" data-bs-toggle="modal" :data-bs-target="`#enlargephoto${photo.id}`">
                       <img v-bind:src="photo.img_url" class="img-fluid" alt="" />
@@ -149,6 +151,8 @@
                         'text-success': photo.average_rating >= 80,
                       }"
                     >
+<!-- The rating >= 80/< 80 logic appears at least twice in this file, so might be a good time to package that logic into a reusable function 
+that can be called anywhere you need to know whether a score is considered good/bad -->
                       Average Rater Photo Score {{ photo.average_rating }}%
                     </h4>
                     <h4 class="text-success" v-if="photo.goodScore">Average AI Photo Score: {{ photo.goodScore }}%</h4>
@@ -377,6 +381,8 @@ export default {
         .catch((error) => {
           console.log("rating update error", error.response);
         });
+        /* You could combine updateRatingBad & updateRatingGood into one method, and just use the param to tell you 
+        if it's a +1 or -1 to the score */
     },
     analyze: function (picture) {
       this.errors = [];
@@ -413,6 +419,7 @@ export default {
           }
           if (attributes.sadness.value === "true") {
             analysis.score -= 10;
+      // LOL I love that it's trying to detect sadness and fear in the photo
           }
           if (attributes.beard.value === "false") {
             analysis.score -= 10;
@@ -423,6 +430,14 @@ export default {
           if (analysis.score < 80) {
             badScore = analysis.score;
           }
+  /* This is a classic example of having multiple sources of truth. With this set up, in the html code you're having to check if (goodScore) and if (badScore), 
+  and whichever gets set is just a copy of the same value in analysis.score. It's two separate vars defining the same thing. It's a good rule of thumb to avoid
+ duplicating data in your contract like this since as soon as you do, you run the risk of values getting out of sync and in some future update no longer knowing
+  if analysis.score or goodScore is the correct score to use. You've already got the score in analysis.score, let that be your source of truth for the score value. 
+  Meanwhile, for the good vs bad score determination, set one isGoodScore boolean and do a !isGoodScore check when you need to know if it's a bad score
+  let isGoodScore = analysis.score >= 80;
+
+  */
 
           Vue.set(picture, "attributes", attributes);
           Vue.set(picture, "analysis", analysis);
